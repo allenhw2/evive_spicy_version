@@ -5,9 +5,10 @@
 Found in requirements.txt
 
 ## Execution:
-- To run the cycle once like the spec sheet use Evive_menu_single.py
-- To cycle through multiple times until exit use Evive_menu_cycle.py
-- to run tests use menu_tests.py
+- run virtual environment
+- install requirements
+- run main.py
+- go to localhost port 500
 
 
 ## Overview:
