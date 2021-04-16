@@ -1,0 +1,186 @@
+{% extends "base.html" %} {% block title %}Menu Home{% endblock %} {% block
+content %}
+<h1 align="center">Order Here</h1>
+<br />
+<b align="center">Breakfast</b>
+<table align="center">
+    <thead>
+        <tr>
+            <th>Main Dish</th>
+            <th>Side Dish</th>
+            <th>Drink</th>
+            <th>Dessert</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Eggs</td>
+            <td>Toast</td>
+            <td>Coffee</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>Water</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+
+<b align="center">Lunch</b>
+<table align="center">
+    <thead>
+        <tr>
+            <th>Main Dish</th>
+            <th>Side Dish</th>
+            <th>Drink</th>
+            <th>Dessert</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Salad</td>
+            <td>Chips</td>
+            <td>Soda</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>Water</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+
+<b align="center">Dinner</b>
+<table align="center">
+    <thead>
+        <tr>
+            <th>Main Dish</th>
+            <th>Side Dish</th>
+            <th>Drink</th>
+            <th>Dessert</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Steak</td>
+            <td>Potatoes</td>
+            <td>Wine</td>
+            <td>Cake</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>Water</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<h2 align="center">Past Orders</h2>
+<ul class="list-group list-group-flush" id="orders">
+	{% if user.orders|length == 0 %}
+	<b align="center"> No past orders found! Order below!</b>
+	{% else %}
+	<table align="center">
+		<thead>
+			<tr>
+				<th>MealType</th>
+				<th>Main Dish</th>
+				<th>Side Dish</th>
+				<th>Drink</th>
+				<th>Dessert</th>
+				<th>Date Ordered</th>
+				<th>Delete Order</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for order in user.orders %}
+			<tr>
+				<td>{{order.meal_type}}</td>
+				<td>{{order.main}}</td>
+				<td>{{order.side}}</td>
+				<td>{{order.drink}}</td>
+				<td>{{order.dessert}}</td>
+				<td>{{order.date}}</td>
+				<td>
+					<button
+						type="button"
+						class="close"
+						onClick="deleteOrder({{ order.id }})"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+</ul>
+<form method="POST">
+	<div class="form-group">
+		<label for="mealType">Meal Type</label>
+		<input
+			type="text"
+			class="form-control"
+			id="mealType"
+			name="mealType"
+			placeholder="ex: 'lunch', 'dinner', etc"
+		/>
+	</div>
+
+	<div class="form-group">
+		<label for="main">Main Dish</label>
+		<input
+			type="text"
+			class="form-control"
+			id="main"
+			name="main"
+			placeholder="Enter Main Dish"
+		/>
+	</div>
+
+	<div class="form-group">
+		<label for="main">Side Dish</label>
+		<input
+			type="text"
+			class="form-control"
+			id="side"
+			name="side"
+			placeholder="Enter Side Dish"
+		/>
+	</div>
+
+	<div class="form-group">
+		<label for="main">Drink</label>
+		<input
+			type="text"
+			class="form-control"
+			id="drink"
+			name="drink"
+			placeholder="Enter Drink"
+		/>
+	</div>
+
+	<div class="form-group">
+		<label for="main">Dessert</label>
+		<input
+			type="text"
+			class="form-control"
+			id="dessert"
+			name="dessert"
+			placeholder="Enter Dessert"
+		/>
+	</div>
+
+	<br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Order</button>
+	</div>
+</form>
+{% endblock %}
